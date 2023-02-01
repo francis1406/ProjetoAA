@@ -1,0 +1,268 @@
+/*Basics*/
+* {
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    cursor: none;
+}
+
+body {
+    overflow: hidden;
+
+}
+
+input {
+    display: none;
+}
+
+/*Circle and hearts*/
+.circle {
+    background-image: url("../img/page1.jpeg");
+    border-radius: 50%;
+    left: calc(50% - 10px);
+    top: 320px;
+    transition: all .5s cubic-bezier(0.22, 0.53, 0.37, 1.41);
+}
+
+.hearts, .hearts:before, .hearts:after, .circle {
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+}
+
+.hearts {
+    transform: rotate(-45deg);
+}
+
+.hearts:before, .hearts:after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: inherit;
+}
+
+.hearts:before {
+    left: 12px;
+}
+
+.hearts:after {
+    top: -12px;
+}
+
+#heart {
+    background: #D33F49;
+    z-index: 2;
+    pointer-events: none;
+}
+
+#heartholder {
+    top: 320px;
+    left: calc(50% - 10px);
+    cursor: none;
+    z-index: 1;
+    background: #f697e1;
+    transition: all .2s ease-in;
+}
+
+/*Transform heart into key*/
+#heartholder:hover {
+    background: #ad6a9e;
+}
+
+#heartholder:hover ~ #heart {
+    width: 7px;
+    height: 27px;
+    background: #ffcf0d;
+}
+
+
+#heartholder:hover ~ #heart:after {
+    left: -7px;
+    top: -19px;
+    width: 12px;
+    height: 12px;
+    background: transparent;
+    border: 5px #ffcf0d solid;
+}
+
+#heartholder:hover ~ #heart:before {
+    border-radius: 0;
+    top: 12px;
+    left: 0;
+    border-color: #ffcf0d;
+    border-width: 4px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    background: transparent;
+    height: 9px;
+}
+
+/*Make the circle appear*/
+#heartInput:checked ~ #heartholder {
+    top: 125px;
+}
+
+#heartInput:checked ~ .circle {
+    width: 500px;
+    height: 500px;
+    left: calc(50% - 250px);
+    top: 150px;
+}
+
+/*Message to the loved one*/
+.message, label.lang {
+    font-family: 'Cabin', sans-serif;
+}
+
+.message {
+    position: absolute;
+    width: 300px;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    margin: 0 auto;
+    line-height: 1.5;
+    top: 250px;
+    left: calc(50% - 150px);
+    opacity: 0;
+}
+
+.message p:first-child {
+    margin-bottom: 70px;
+}
+
+.love {
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+}
+
+/*Change language*/
+
+label.lang {
+    margin-right: 15px;
+    display: block;
+    float: right;
+    color: #aaa;
+    padding: 15px 5px;
+    position: relative;
+    z-index: 5;
+    cursor: pointer;
+}
+
+input[type="radio"]:checked + label, label.lang:hover {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #383838;
+}
+
+#checkENG:checked ~ .message.eng {
+    opacity: 1;
+}
+
+#heartInput:checked ~ .message.eng {
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+}
+
+<!--
+-->
+.nav {
+    height: 50px;
+    width: 100%;
+    background-color: #ffffff;
+    position: fixed;
+}
+
+.nav > .nav-header {
+    display: inline;
+}
+
+.nav > .nav-header > .nav-title {
+    display: flex;
+    padding: 15px 10px 10px 10px;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.nav > .nav-btn {
+    display: none;
+}
+
+.nav > .nav-links {
+    display: flex;
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav > .nav-links > a {
+    text-decoration: none;
+    color: #000;
+    padding: 10px;
+}
+
+.nav > .nav-links > a:hover {
+    color: #cd4244;
+}
+
+.nav > #nav-check {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .nav > .nav-btn {
+        display: inline-block;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+    }
+
+    .nav > .nav-btn > label {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        padding: 13px;
+    }
+
+    .nav > .nav-btn > label > span {
+        display: block;
+        width: 25px;
+        height: 10px;
+        border-top: 2px solid #eee;
+    }
+
+    .nav > .nav-links {
+        position: absolute;
+        display: block;
+        width: 100%;
+        background-color: #333;
+        height: 0px;
+        transition: all 0.3s ease-in;
+        overflow-y: hidden;
+        top: 50px;
+        left: 0px;
+    }
+
+    .nav > .nav-links > a {
+        display: block;
+        width: 100%;
+    }
+
+    .nav > #nav-check:not(:checked) ~ .nav-links {
+        height: 0px;
+    }
+
+    .nav > #nav-check:checked ~ .nav-links {
+        height: calc(100vh - 50px);
+        overflow-y: auto;
+    }
+}
+
+.selectA {
+    border: 1px solid black;
+    border-radius: 8px;
+}
